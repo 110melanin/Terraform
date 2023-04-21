@@ -1,3 +1,3 @@
 # terraform
-Terraform code files and resources
+Terraform script files and resources
  #
