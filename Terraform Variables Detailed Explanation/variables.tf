@@ -14,7 +14,7 @@ variable "Security_Group"{
 variable "AMI" {
     type = map
     default = {
-        eu-west-2 = "ami-0b5d515300a819fd9"
+        eu-west-2 = "ami-0eb27879c20e8bf16"
         
         
     }
