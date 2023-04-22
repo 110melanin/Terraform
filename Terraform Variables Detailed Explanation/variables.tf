@@ -3,12 +3,12 @@ variable "AWS_ACCESS_KEY" {}
 variable "AWS_SECRET_KEY" {}
 
 variable "AWS_REGION" {
-default = "us-east-2"
+default = "eu-west-2"
 }
 
 variable "Security_Group"{
     type = list
-    default = ["sg-24076", "sg-90890", "sg-456789"]
+    default = ["nginx", "tomcat", "rds"]
 }
 
 variable "AMIS" {
