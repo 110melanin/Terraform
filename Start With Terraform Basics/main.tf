@@ -2,14 +2,9 @@
 
 # Configure the AWS Provider
 provider "aws" {
-    version = "3.53.0"
-    access_key = "AKIAXC3FBB2OJJC3DUIP"
+    version = "4.64.0"
+    access_key = "AKIAZXEUEPVWLUI5M2I5"
     secret_key = "SECRET_KEY"
-    region     = "us-east-2"
+    region     = "eu-west-2"
 }
 
-# Configure the Microsoft Azure Provider
-provider "azurerm" {
-    version = "2.72.0"
-    features {}
-}
