@@ -8,7 +8,7 @@ default = "eu-west-2"
 
 variable "Security_Group"{
     type = list
-    default = ["nginx", "tomcat", "rds"]
+    default = ["terranginx", "terratomcat", "terrards"]
 }
 
 variable "AMI" {
