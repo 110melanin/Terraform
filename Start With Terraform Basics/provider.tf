@@ -1,6 +1,6 @@
-## Provider's Example
-
+# Provider's Example
 # Configure the AWS Provider
+
 provider "aws" {
     version = "4.64.0"
     access_key = "AKIAZXEUEPVWLUI5M2I5"
