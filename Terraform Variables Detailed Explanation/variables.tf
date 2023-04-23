@@ -11,7 +11,7 @@ variable "Security_Group"{
     default = ["terranginx", "terratomcat", "terrards"]
 }
 
-variable "AMI" {
+variable "AMIS" {
     type = map
     default = {
         eu-west-2 = "ami-0582d5cf3037b773a"
