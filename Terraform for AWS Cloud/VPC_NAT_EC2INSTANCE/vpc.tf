@@ -103,7 +103,7 @@ resource "aws_route_table" "terra-public-rt" {
     gateway_id = aws_internet_gateway.terra-gw.id
   }
 }
-  tags = {
+  tags {
     Name = "terra-public-rt-1"
   }
 
