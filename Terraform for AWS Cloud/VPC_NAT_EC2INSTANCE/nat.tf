@@ -20,10 +20,10 @@ resource "aws_route_table" "terra-private-rt" {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.terra-nat-gw.id
   }
-}
    tags {
     Name = "terra-private-rt-1"
   }
+}
 
 # Route Association Private
 
