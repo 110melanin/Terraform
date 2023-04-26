@@ -21,7 +21,7 @@ resource "aws_route_table" "terra-private-rt" {
     nat_gateway_id = aws_nat_gateway.terra-nat-gw.id
   }
 }
-  tags {
+   tags {
     Name = "terra-private-rt-1"
   }
 
