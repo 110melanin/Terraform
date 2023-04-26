@@ -102,9 +102,7 @@ resource "aws_route_table" "terra-public-rt" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.terra-gw.id
   }
-   tags {
-    Name = "terra-public-rt-1"
-  }
+  
 } 
 
 resource "aws_route_table_association" "terra-public-rt-1a" {
