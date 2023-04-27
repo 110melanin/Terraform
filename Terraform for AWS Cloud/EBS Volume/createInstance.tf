@@ -26,7 +26,7 @@ resource "aws_ebs_volume" "terra-ebs" {
 }
 
 resource "aws_volume_attachment" "terra-ebs-attachment" {
-  device_name = "/dev/sdh"
+  device_name = "/dev/xvdh"
   volume_id   = aws_ebs_volume.terra-ebs.id
   instance_id = aws_instance.terra-instance.id
 }
