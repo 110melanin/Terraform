@@ -10,7 +10,6 @@ resource "aws_security_group" "allow-terra-ssh" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = [aws_vpc.terra-vpc.cidr_block]
-    ipv6_cidr_blocks = [aws_vpc.terra-vpc.cidr_block]
   }
 
   egress {
