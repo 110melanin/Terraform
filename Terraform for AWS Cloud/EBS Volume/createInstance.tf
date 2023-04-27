@@ -18,7 +18,7 @@ resource "aws_instance" "terra-instance" {
 # EBS Volume Creation
 
 resource "aws_ebs_volume" "terra-ebs" {
-  availability_zone = "eu-west-2"
+  availability_zone = "eu-west-2a"
   size              = 40
   type              = "gp2"
   tags = {
