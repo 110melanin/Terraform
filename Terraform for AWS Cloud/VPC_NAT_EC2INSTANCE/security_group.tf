@@ -3,7 +3,7 @@
 resource "aws_security_group" "allow-terra-ssh" {
   name        = "allow_terra_ssh"
   description = "security group to allow ssh connections"
-  vpc_id      = aws_vpc.terra-vpc.cidr_block
+  vpc_id      = aws_vpc.terra-vpc.id
 
   ingress {
     from_port        = 22
