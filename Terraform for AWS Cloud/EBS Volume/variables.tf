@@ -6,12 +6,12 @@ variable "AWS_ACCESS_KEY" {
 variable "AWS_SECRET_KEY" {}
 
 variable "AWS_REGION" {
-    default = "eu-west-2a"
+    default = "eu-west-2"
 }
 variable "AMIS" {
     type = map
     default = {
-        eu-west-2a = "ami-032a2dcb7c12ce3c2"
+        eu-west-2 = "ami-032a2dcb7c12ce3c2"
         
  }
 }
