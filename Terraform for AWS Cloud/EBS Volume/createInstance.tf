@@ -1,35 +1,34 @@
 
-resource "aws_key_pair" "levelup_key" {
-    key_name = "levelup_key"
+resource "aws_key_pair" "terra_key" {
+    key_name = "terra_key"
     public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
-#Create AWS Instance
-resource "aws_instance" "MyFirstInstnace" {
+resource "aws_instance" "terra-instance" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
   instance_type = "t2.micro"
-  availability_zone = "us-east-2a"
-  key_name      = aws_key_pair.levelup_key.key_name
+  key_name      = aws_key_pair.terra_key.key_name
+  
 
   tags = {
-    Name = "custom_instance"
+    Name = "terra_instance"
   }
 }
 
-#EBS resource Creation
-resource "aws_ebs_volume" "ebs-volume-1" {
-  availability_zone = "us-east-2a"
-  size              = 50
+# EBS Volume Creation
+
+resource "aws_ebs_volume" "terra-ebs" {
+  availability_zone = "eu-west-2"
+  size              = 40
   type              = "gp2"
-
   tags = {
-    Name = "Secondary Volume Disk"
+    Name = "Secondary Terra Disk"
   }
 }
 
-#Atatch EBS volume with AWS Instance
-resource "aws_volume_attachment" "ebs-volume-1-attachment" {
-  device_name = "/dev/xvdh"
-  volume_id   = aws_ebs_volume.ebs-volume-1.id
-  instance_id = aws_instance.MyFirstInstnace.id
+resource "aws_volume_attachment" "terra-ebs-attachment" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.terra-ebs.id
+  instance_id = aws_instance.terra-instance.id
 }
+
