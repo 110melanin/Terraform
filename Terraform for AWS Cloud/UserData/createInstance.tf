@@ -1,23 +1,22 @@
 
-resource "aws_key_pair" "levelup_key" {
-    key_name = "levelup_key"
+resource "aws_key_pair" "terra_key" {
+    key_name = "terra_key"
     public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
-#Create AWS Instance
-resource "aws_instance" "MyFirstInstnace" {
+resource "aws_instance" "terra-instance" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
   instance_type = "t2.micro"
-  availability_zone = "us-east-2a"
-  key_name      = aws_key_pair.levelup_key.key_name
+  key_name      = aws_key_pair.terra_key.key_name
 
-  user_data = file("installapache.sh")
+  user_data     = file ("installapache.sh")
+  
 
   tags = {
-    Name = "custom_instance"
+    Name = "terra_instance"
   }
 }
 
 output "public_ip" {
-  value = aws_instance.MyFirstInstnace.public_ip 
+  value = aws_instance.terra_instance.public_ip
 }
