@@ -1,7 +1,7 @@
 # RDS Resources
 
 resource "aws_db_subnet_group" "mariadb-subnets" {
-  name       = "mariadb-subnet"
+  name       = "mariadb-subnets"
   subnet_ids = [aws_subnet.terra-subnet-private-1.id, aws_subnet.terra-subnet-private-2.id]
 
   tags = {
