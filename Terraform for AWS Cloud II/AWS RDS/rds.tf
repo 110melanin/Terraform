@@ -18,7 +18,7 @@ resource "aws_db_parameter_group" "terra-mariadb-parameters" {
 
   parameter {
     name  = "max_allowed_packet"
-    value = "167"
+    value = "16777216"
   }
 }
 
