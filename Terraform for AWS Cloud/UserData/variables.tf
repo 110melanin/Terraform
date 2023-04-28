@@ -17,5 +17,5 @@ variable "AMIS" {
 }
 
 variable "PATH_TO_PUBLIC_KEY" {
-    default = "terra_key.pub"
+    default = "terra_key1.pub"
 }

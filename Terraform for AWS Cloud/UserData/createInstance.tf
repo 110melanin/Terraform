@@ -1,6 +1,6 @@
 
-resource "aws_key_pair" "terra_key" {
-    key_name = "terra_key"
+resource "aws_key_pair" "terra_key1" {
+    key_name = "terra_key1"
     public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
