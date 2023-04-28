@@ -31,7 +31,7 @@ resource "aws_db_instance" "terra-mariadb" {
   instance_class       = "db.t2.micro"
   username             = "root"        #username
   password             = "mariadb141"  #password
-  db_subnet_group_name = aws_db_subnet_group.mariadb-subnets
+  db_subnet_group_name = "aws_db_subnet_group.mariadb-subnets"
   parameter_group_name = aws_db_parameter_group.terra-mariadb-parameters.name
   skip_final_snapshot  = true
   vpc_security_group_ids = [aws_security_group.allow-mariadb.id]
