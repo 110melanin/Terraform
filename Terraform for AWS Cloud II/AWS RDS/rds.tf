@@ -27,7 +27,7 @@ resource "aws_db_parameter_group" "terra-mariadb-parameters" {
 resource "aws_db_instance" "terra-mariadb" {
   allocated_storage    = 10
   engine               = "mariadb"
-  engine_version       = "10.4.8"
+  engine_version       = "10.4"
   instance_class       = "db.t2.micro"
   username             = "root"        #username
   password             = "mariadb141"  #password
