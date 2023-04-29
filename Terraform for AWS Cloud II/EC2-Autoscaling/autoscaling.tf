@@ -2,7 +2,7 @@
 
 resource "aws_launch_configuration" "terra-launchconfig" {
   name          = "terra-launchconfig"
-  image_id      = lookup{var.AMIS, var.AWS_REGION}
+  image_id      = lookup(var.AMIS, var.AWS_REGION)
   instance_type = "t2.micro"
   key_name      = aws_key_pair.terra_key1.key_name
 }
@@ -54,7 +54,6 @@ resource "aws_cloudwatch_metric_alarm" "terra-alarm" {
     AutoScalingGroupName = aws_autoscaling_group.terra-autoscaling.name
   }
 
-  alarm_description = "This metric monitors ec2 cpu utilization"
   alarm_actions     = [aws_autoscaling_policy.terra-autoscaling-policy.arn]
 }
 
@@ -86,6 +85,5 @@ resource "aws_cloudwatch_metric_alarm" "terra-alarm-scaledown" {
     AutoScalingGroupName = aws_autoscaling_group.terra-autoscaling.name
   }
 
-  alarm_description = "This metric monitors ec2 cpu utilization"
   alarm_actions     = [aws_autoscaling_policy.terra-autoscaling-policy-scaledown.arn]
 }
