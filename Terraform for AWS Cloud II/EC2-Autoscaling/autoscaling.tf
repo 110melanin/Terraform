@@ -1,3 +1,10 @@
+#keypair
+
+resource "aws_key_pair" "terra_key1" {
+    key_name = "terra_key1"
+    public_key = file(var.PATH_TO_PUBLIC_KEY)
+}
+
 # Auto-Scaling Launch_configuration
 
 resource "aws_launch_configuration" "terra-launchconfig" {
