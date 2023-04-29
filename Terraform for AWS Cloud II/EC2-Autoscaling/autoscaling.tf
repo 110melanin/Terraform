@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "terra-autoscaling" {
   health_check_type         = "EC2"
   force_delete              = true
   launch_configuration      = aws_launch_configuration.terra-launchconfig.name
-  vpc_zone_identifier       = "aws_vpc.terra-vpc.id"
+  vpc_zone_identifier       = ["eu-west-2a", "eu-west-2b"]
    tag {
     key                 = "Name"
     value               = "terra custom EC2"
