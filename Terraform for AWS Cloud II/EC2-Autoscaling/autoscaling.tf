@@ -1,91 +1,91 @@
-#AutoScaling Launch Configuration
-resource "aws_launch_configuration" "levelup-launchconfig" {
-  name_prefix     = "levelup-launchconfig"
-  image_id        = lookup(var.AMIS, var.AWS_REGION)
-  instance_type   = "t2.micro"
-  key_name        = aws_key_pair.levelup_key.key_name
+# Auto-Scaling Launch_configuration
+
+resource "aws_launch_configuration" "terra-launchconfig" {
+  name          = "terra-launchconfig"
+  image_id      = lookup{var.AMIS, var.AWS_REGION}
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.terra_key1.key_name
 }
 
-#Generate Key
-resource "aws_key_pair" "levelup_key" {
-    key_name = "levelup_key"
-    public_key = file(var.PATH_TO_PUBLIC_KEY)
-}
+#AutoScaling Group
 
-#Autoscaling Group
-resource "aws_autoscaling_group" "levelup-autoscaling" {
-  name                      = "levelup-autoscaling"
-  vpc_zone_identifier       = ["subnet-9e0ad9f5", "subnet-d7a6afad"]
-  launch_configuration      = aws_launch_configuration.levelup-launchconfig.name
-  min_size                  = 1
+resource "aws_autoscaling_group" "terra-autoscaling" {
+  name                      = "terra-autoscaling"
   max_size                  = 2
+  min_size                  = 1
   health_check_grace_period = 200
   health_check_type         = "EC2"
   force_delete              = true
+  launch_configuration      = aws_launch_configuration.terra-launchconfig.name
+  vpc_zone_identifier       = [aws_subnet.example1.id, aws_subnet.example2.id]
 
-  tag {
+   tag {
     key                 = "Name"
-    value               = "LevelUp Custom EC2 instance"
-    propagate_at_launch = true
+    value               = "terra custom EC2"
+    propagate_at_launch = false
+   }
   }
-}
 
-#Autoscaling Configuration policy - Scaling Alarm
-resource "aws_autoscaling_policy" "levelup-cpu-policy" {
-  name                   = "levelup-cpu-policy"
-  autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
+  #AutoScaling Policy
+
+  resource "aws_autoscaling_policy" "terra-autoscaling-policy" {
+  name                   = "terra-autoscaling-policy"
+  scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
-  scaling_adjustment     = "1"
-  cooldown               = "200"
+  cooldown               = 200
+  autoscaling_group_name = aws_autoscaling_group.terra-autoscaling.name
   policy_type            = "SimpleScaling"
 }
 
-#Auto scaling Cloud Watch Monitoring
-resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
-  alarm_name          = "levelup-cpu-alarm"
-  alarm_description   = "Alarm once CPU Uses Increase"
+# CloudWatch Monitoring
+
+resource "aws_cloudwatch_metric_alarm" "terra-alarm" {
+  alarm_name          = "terra-alarm"
+  alarm_description   = "Alarm once CPU usage Increase"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = 2
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = 120
   statistic           = "Average"
-  threshold           = "30"
+  threshold           = 30
 
   dimensions = {
-    "AutoScalingGroupName" = aws_autoscaling_group.levelup-autoscaling.name
+    AutoScalingGroupName = aws_autoscaling_group.terra-autoscaling.name
   }
 
-  actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.levelup-cpu-policy.arn]
+  alarm_description = "This metric monitors ec2 cpu utilization"
+  alarm_actions     = [aws_autoscaling_policy.terra-autoscaling-policy.arn]
 }
 
-#Auto Descaling Policy
-resource "aws_autoscaling_policy" "levelup-cpu-policy-scaledown" {
-  name                   = "levelup-cpu-policy-scaledown"
-  autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
+# Auto Descaling Policy
+
+ resource "aws_autoscaling_policy" "terra-autoscaling-policy-scaledown" {
+  name                   = "terra-autoscaling-policy-scaledown"
+  scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
-  scaling_adjustment     = "-1"
-  cooldown               = "200"
+  cooldown               = 200
+  autoscaling_group_name = aws_autoscaling_group.terra-autoscaling.name
   policy_type            = "SimpleScaling"
 }
 
-#Auto descaling cloud watch 
-resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm-scaledown" {
-  alarm_name          = "levelup-cpu-alarm-scaledown"
-  alarm_description   = "Alarm once CPU Uses Decrease"
-  comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+# Auto Descaling CloudWatch
+
+resource "aws_cloudwatch_metric_alarm" "terra-alarm-scaledown" {
+  alarm_name          = "terra-alarm-scaledown"
+  alarm_description   = "Alarm once CPU usage Decrease"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 2
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = 120
   statistic           = "Average"
-  threshold           = "10"
+  threshold           = 10
 
   dimensions = {
-    "AutoScalingGroupName" = aws_autoscaling_group.levelup-autoscaling.name
+    AutoScalingGroupName = aws_autoscaling_group.terra-autoscaling.name
   }
 
-  actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.levelup-cpu-policy-scaledown.arn]
+  alarm_description = "This metric monitors ec2 cpu utilization"
+  alarm_actions     = [aws_autoscaling_policy.terra-autoscaling-policy-scaledown.arn]
 }
