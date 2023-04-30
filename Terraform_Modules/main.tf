@@ -3,7 +3,7 @@ module "ec2_instance" {
 
   name = "terra-single-instance"
 
-  ami                    = var.AMIS
+  ami                    =  "ami-032a2dcb7c12ce3c2"
   instance_type          = "t2.micro"
   monitoring             = false
   subnet_id              = "subnet-0fce73655fe99a6ba"
