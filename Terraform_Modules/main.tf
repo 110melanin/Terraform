@@ -5,7 +5,6 @@ module "ec2_instance" {
 
   ami                    = var.AMIS
   instance_type          = "t2.micro"
-  key_name               = "justice"
   monitoring             = false
   subnet_id              = "subnet-0fce73655fe99a6ba"
 
