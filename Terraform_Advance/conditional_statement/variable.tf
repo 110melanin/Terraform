@@ -1,9 +1,9 @@
 variable "AWS_REGION" {
     type        = string
-    default     = "us-east-2"
+    default     = "eu-west-2"
 }
 
 variable "environment" {
     type        = string
-    default     = "Production"
+    default     = "Development"
 }
