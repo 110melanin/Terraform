@@ -7,3 +7,9 @@ variable "environment" {
     type        = string
     default     = "Development"
 }
+
+variable "instance_type" {
+  description = "The type of instance to start"
+  type        = string
+  default     = "t3.micro"
+}
