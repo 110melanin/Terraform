@@ -1,48 +1,53 @@
-#Security Group for levelupvpc
-resource "aws_security_group" "allow-levelup-ssh" {
-  vpc_id      = aws_vpc.levelupvpc.id
-  name        = "allow-levelup-ssh"
-  description = "security group that allows ssh connection"
+# Security Group for Terra-VPC
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_security_group" "allow-terra-ssh" {
+  name        = "allow-terra-ssh"
+  description = "security group to allow ssh connections"
+  vpc_id      = aws_vpc.terra-vpc.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
-  
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+
+  }
+
   tags = {
-    Name = "allow-levelup-ssh"
+    Name = "allow-terra-ssh"
   }
 }
 
-#Security Group for MariaDB
-resource "aws_security_group" "allow-mariadb" {
-  vpc_id      = aws_vpc.levelupvpc.id
-  name        = "allow-mariadb"
-  description = "security group for Maria DB"
+# Security Group for MariaDB
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_security_group" "allow-mariadb" {
+  name        = "allow-mariadb"
+  description = "security group for ariaDB connections"
+  vpc_id      = aws_vpc.terra-vpc.id
 
   ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    security_groups = [aws_security_group.allow-levelup-ssh.id]
+    from_port        = 3306
+    to_port          = 3306
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.allow-terra-ssh.id]
+
   }
-  
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "allow-mariadb"
   }
