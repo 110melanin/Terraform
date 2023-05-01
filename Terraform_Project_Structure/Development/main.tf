@@ -1,9 +1,3 @@
-provider "aws" {
-  access_key = "AKIAZXEUEPVWLUI5M2I5"
-  secret_key = var.AWS_SECRET_KEY
-  region     = ""
-}
-
 # Create Resource for Development Environment
 
 module "dev-vpc" {
