@@ -7,8 +7,8 @@ module "ec2_instance" {
 
   name = "terra-single-instance"
 
-  ami                    =  "ami-032a2dcb7c12ce3c2"
-  instance_type          =  var.instance_type 
+  ami                    = "ami-032a2dcb7c12ce3c2"
+  instance_type          = var.instance_type 
   monitoring             = false
   subnet_id              = "subnet-0fce73655fe99a6ba"
   count                  = var.instance_type == "t2.micro" ? 2 : 1
