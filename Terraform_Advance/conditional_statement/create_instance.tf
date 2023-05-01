@@ -10,7 +10,7 @@ module "ec2_instance" {
   ami                    =  "ami-032a2dcb7c12ce3c2"
   monitoring             = false
   subnet_id              = "subnet-0fce73655fe99a6ba"
-  instance_type        = var.instance_type == "t2.micro" ? 2 : 1
+  count                  = var.environment == "Production" ? 2 : 1
 
 
   tags = {
