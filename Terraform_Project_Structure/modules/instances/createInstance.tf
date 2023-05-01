@@ -1,14 +1,15 @@
-# Create Instance uisng Custom VPC
-#Resource key pair
-resource "aws_key_pair" "levelup_key" {
-  key_name      = "levelup_key"
+# Create Instance using Custom VPC
+
+# Resource key pair
+resource "aws_key_pair" "terra_key1" {
+  key_name      = "terra_key1"
   public_key    = file(var.public_key_path)
 }
 
-#Secutiry Group for Instances
-resource "aws_security_group" "allow-ssh" {
+#Security Group for Instances
+resource "aws_security_group" "terra-ssh" {
   vpc_id      = var.VPC_ID
-  name        = "allow-ssh-${var.ENVIRONMENT}"
+  name        = "terra-ssh-${var.ENVIRONMENT}"
   description = "security group that allows ssh traffic"
 
   egress {
@@ -26,25 +27,29 @@ resource "aws_security_group" "allow-ssh" {
   }
 
   tags = {
-    Name         = "allow-ssh"
+    Name         = "terra-ssh"
     Environmnent = var.ENVIRONMENT
   }
 }
 
 # Create Instance Group
-resource "aws_instance" "my-instance" {
+
+resource "aws_instance" "terra-instance" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
   instance_type = var.INSTANCE_TYPE
 
   # the VPC subnet
+ 
   subnet_id = element(var.PUBLIC_SUBNETS, 0)
   availability_zone = "${var.AWS_REGION}a"
 
   # the security group
-  vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
+  
+  vpc_security_group_ids = ["${aws_security_group.terra-ssh.id}"]
 
   # the public SSH key
-  key_name = aws_key_pair.levelup_key.key_name
+  
+  key_name = aws_key_pair.terra_key1.key_name
 
   tags = {
     Name         = "instance-${var.ENVIRONMENT}"

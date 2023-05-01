@@ -12,7 +12,7 @@ module "dev-instances" {
 
     ENVIRONMENT     = var.Env
     AWS_REGION      = var.AWS_REGION 
-    VPC_ID          = module.dev-vpc.my_vpc_id
+    VPC_ID          = module.dev-vpc.terra_vpc_id
     PUBLIC_SUBNETS  = module.dev-vpc.public_subnets
 }
 

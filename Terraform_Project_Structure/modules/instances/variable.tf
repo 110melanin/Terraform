@@ -1,7 +1,7 @@
 # Variable for Create Instance Module
 variable "public_key_path" {
   description = "Public key path"
-  default = "~/.ssh/levelup_key.pub"
+  default = "~/.ssh/terra_key1.pub"
 }
 
 variable "VPC_ID" {
@@ -15,16 +15,16 @@ variable "ENVIRONMENT" {
 }
 
 variable "AWS_REGION" {
-default = "us-east-2"
+default = "eu-west-2"
 }
 
 variable "AMIS" {
     type = map
     default = {
-        us-east-1 = "ami-0f40c8f97004632f9"
-        us-east-2 = "ami-05692172625678b4e"
-        us-west-2 = "ami-02c8896b265d8c480"
-        eu-west-1 = "ami-0cdd3aca00188622e"
+        eu-west-2 = "ami-032a2dcb7c12ce3c2"
+        eu-west-1 = "ami-024d2ea3ac8449f5f"
+        eu-west-2 = "ami-024d2ea3ac8449f5f"
+        eu-west-1 = "ami-024d2ea3ac8449f5f"
     }
 }
 

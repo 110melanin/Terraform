@@ -1,5 +1,5 @@
 #Custom VPC for my Project 
-module "levelup-vpc" {
+module "terra-vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   name = "vpc-${var.ENVIRONMENT}"
@@ -19,17 +19,18 @@ module "levelup-vpc" {
 }
 
 #Output Specific to Custom VPC
-output "my_vpc_id" {
+
+output "terra_vpc_id" {
   description = "VPC ID"
-  value       = module.levelup-vpc.vpc_id
+  value       = module.terra-vpc.vpc_id
 }
 
 output "private_subnets" {
   description = "List of IDs of private subnets"
-  value       = module.levelup-vpc.private_subnets
+  value       = module.terra-vpc.private_subnets
 }
 
 output "public_subnets" {
   description = "List of IDs of public subnets"
-  value       = module.levelup-vpc.public_subnets
+  value       = module.terra-vpc.public_subnets
 }
