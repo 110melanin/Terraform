@@ -1,6 +1,7 @@
 # Create Instance using Custom VPC
 
 # Resource key pair
+
 resource "aws_key_pair" "terra_key1" {
   key_name      = "terra_key1"
   public_key    = file(var.public_key_path)

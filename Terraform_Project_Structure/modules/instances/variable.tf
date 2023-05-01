@@ -1,7 +1,7 @@
 # Variable for Create Instance Module
 variable "public_key_path" {
   description = "Public key path"
-  default = "~/.ssh/terra_key1.pub"
+  default = "terra_key1.pub"
 }
 
 variable "VPC_ID" {
