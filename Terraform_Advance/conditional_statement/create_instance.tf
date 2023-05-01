@@ -11,7 +11,7 @@ module "ec2_instance" {
   instance_type          = "t2.micro"
   monitoring             = false
   subnet_id              = "subnet-0fce73655fe99a6ba"
-  instance_count         = var.environment == "production" ? 2 : 1
+  instance_type        = var.instance_type == "t3.micro" ? 1 : 2
 
 
   tags = {
