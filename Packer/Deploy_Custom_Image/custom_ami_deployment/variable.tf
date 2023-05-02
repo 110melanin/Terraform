@@ -13,7 +13,7 @@ variable "VPC_ID" {
 
 variable "ENVIRONMENT" {
     type    = string
-    default = ""
+    default = "development"
 }
 
 variable "AMI_ID" {
