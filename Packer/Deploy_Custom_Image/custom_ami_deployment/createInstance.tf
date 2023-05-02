@@ -60,7 +60,7 @@ resource "aws_instance" "terra-instance" {
 
   # the public SSH key
   
-  key_name = aws_key_pair.terra_key1.key_name
+  key_name = aws_key_pair.terra_key2.key_name
 
   tags = {
     Name         = "instance-${var.ENVIRONMENT}"
