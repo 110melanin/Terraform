@@ -1,7 +1,7 @@
 # Create Instance using Custom VPC
 
 module "test-vpc" {
-  source      = "terraform-aws-modules/vpc/aws"
+  source      = "../vpc"
 }
 
 provider "aws" {
