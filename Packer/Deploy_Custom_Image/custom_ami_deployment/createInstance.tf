@@ -51,7 +51,7 @@ resource "aws_instance" "terra-instance" {
 
   # the VPC subnet
  
-  subnet_id = element(module.test-vpc.public_subnets)
+  subnet_id = element(module.test-vpc.public_subnets, 0)
   availability_zone = "${var.AWS_REGION}a"
 
   # the security group
