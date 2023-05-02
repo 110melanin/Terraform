@@ -19,7 +19,7 @@ resource "aws_key_pair" "terra_key1" {
 
 #Security Group for Instances
 resource "aws_security_group" "terra-ssh" {
-  vpc_id      = module.test_vpc.terra_vpc_id
+  vpc_id      = module.test-vpc.terra_vpc_id
   name        = "terra-ssh-${var.ENVIRONMENT}"
   description = "security group that allows ssh traffic"
 
