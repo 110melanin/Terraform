@@ -12,8 +12,8 @@ provider "aws" {
 
 # Resource key pair
 
-resource "aws_key_pair" "terra_key1" {
-  key_name      = "terra_key1"
+resource "aws_key_pair" "terra_key2" {
+  key_name      = "terra_key2"
   public_key    = file(var.public_key_path)
 }
 

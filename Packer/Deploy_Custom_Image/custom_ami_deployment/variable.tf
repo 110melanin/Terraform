@@ -1,7 +1,7 @@
 # Variable for Create Instance Module
 variable "public_key_path" {
   description = "Public key path"
-  default = "terra_key1.pub"
+  default = "terra_key2.pub"
 }
 
 variable "AWS_SECRET_KEY" {}
