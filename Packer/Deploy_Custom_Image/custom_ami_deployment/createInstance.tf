@@ -1,7 +1,7 @@
 # Create Instance using Custom VPC
 
 module "test-vpc" {
-  source      = "../vpc"
+  source      = module.terra-vpc
 
   ENVIRONMENT = var.ENVIRONMENT
   AWS_REGION  = var.AWS_REGION
