@@ -4,6 +4,8 @@ variable "public_key_path" {
   default = "terra_key1.pub"
 }
 
+variable "AWS_SECRET_KEY" {}
+
 variable "VPC_ID" {
     type = string
     default = ""

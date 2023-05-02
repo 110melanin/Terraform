@@ -5,7 +5,9 @@ module "test-vpc" {
 }
 
 provider "aws" {
-   region = var.AWS_REGION
+  access_key = "AKIAZXEUEPVWLUI5M2I5"
+  secret_key = var.AWS_SECRET_KEY
+  region     = var.AWS_REGION
 }
 
 # Resource key pair
